@@ -24,11 +24,6 @@ const channelIDPage = ({ serverID, channelID }) => {
             <Messages channelID={channelID} />
           </Main>
         </div>
-        <Sidebar>
-          <ChannelSideBar>
-            <Channels serverID={serverID} channelID={channelID} />
-          </ChannelSideBar>
-        </Sidebar>
       </Layout>
     </div>
   );
