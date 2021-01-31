@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { useSelector } from 'react-redux';
 import { Modal } from 'react-responsive-modal';
 import { createServer } from 'services/handleServersData';
+import { removeDashes } from 'services/uuidFormat';
 
 export const ServerSideBar = () => {
   const user = useSelector((state) => state.user);
@@ -43,60 +44,6 @@ export const ServerSideBar = () => {
     queryClient.invalidateQueries('userServers');
   };
 
-  const createServerUI = () => {
-    return (
-      <div>
-        <form onSubmit={handleCreateServer}>
-          <input
-            type="text"
-            placeholder="name"
-            required
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="description"
-            required
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <button type="submit">Create</button>
-        </form>
-      </div>
-    );
-  };
-
-  const joinServerUI = () => {
-    return (
-      <div>
-        <form
-          onSubmit={async (e) => {
-            e.preventDefault();
-            const res = await fetch('/api/user/servers/sid', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                userID: user.user_uid,
-                serverID: server_uid,
-              }),
-            });
-            queryClient.invalidateQueries('userServers');
-          }}>
-          <input
-            type="text"
-            name="server_id"
-            value={server_uid}
-            placeholder="Join server"
-            id="server_id"
-            onChange={(e) => setServerUID(e.target.value)}
-          />
-          <button type="submit">Join Server</button>
-        </form>
-      </div>
-    );
-  };
-
   return (
     <div className="bg-gray-800 w-20 h-screen overflow-hidden overflow-y-scroll">
       <ReactQueryDevtools initialIsOpen={false} />
@@ -122,7 +69,7 @@ export const ServerSideBar = () => {
             <div>
               {data.servers.map((server) => (
                 <Link
-                  href={`/channels/${server.server_uid.split('-').join('')}`}
+                  href={`/channels/${removeDashes(server.server_uid)}`}
                   key={server.server_uid}>
                   <div
                     className={`logo rounded-full my-2 ${
@@ -153,10 +100,48 @@ export const ServerSideBar = () => {
       </div>
       <div>
         <Modal open={serverModal} onClose={() => setServerModal(false)} center>
-          <div className="bg-gray-700">
-            <div className="flex">
-              {createServerUI()}
-              {joinServerUI()}
+          <div className="bg-red-500">
+            <form onSubmit={handleCreateServer}>
+              <input
+                type="text"
+                placeholder="name"
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="description"
+                required
+                onChange={(e) => setDescription(e.target.value)}
+              />
+              <button type="submit">Create</button>
+            </form>
+            <div>
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const res = await fetch('/api/user/servers/sid', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      userID: user.user_uid,
+                      serverID: server_uid,
+                    }),
+                  });
+                  queryClient.invalidateQueries('userServers');
+                }}>
+                <input
+                  type="text"
+                  name="server_id"
+                  value={server_uid}
+                  placeholder="Join server"
+                  id="server_id"
+                  onChange={(e) => setServerUID(e.target.value)}
+                />
+                <button type="submit">Join Server</button>
+              </form>
             </div>
           </div>
         </Modal>
