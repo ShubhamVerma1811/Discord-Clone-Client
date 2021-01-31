@@ -64,12 +64,14 @@ const Channels = ({ serverID, channelID }) => {
             return (
               <Link
                 key={channel.channel_uid}
-                href={`/channels/${serverID}/${channel.channel_uid}`}>
+                href={`/channels/${serverID}/${channel.channel_uid
+                  .split('-')
+                  .join('')}`}>
                 <div
                   className={`channel py-2 px-1 cursor-pointer rounded-md my-1 mx-1
 
                   ${
-                    channelID == channel.channel_uid
+                    channelID == channel.channel_uid.split('-').join('')
                       ? 'bg-gray-600 text-white'
                       : 'bg-gray-700'
                   }
