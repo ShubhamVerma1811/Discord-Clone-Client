@@ -12,7 +12,7 @@ export default async function signIn(req, res) {
     const user = result.rows[0];
     if (!user) {
       res.status(404).send({
-        message: 'Failure',
+        message: "User doesn't exist.",
       });
     } else {
       if (await bcrypt.compare(password, user.hash)) {
@@ -29,7 +29,7 @@ export default async function signIn(req, res) {
         });
       } else {
         res.status(403).send({
-          message: 'Failure',
+          message: 'Invalid email or password',
         });
       }
     }
