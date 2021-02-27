@@ -23,7 +23,7 @@ const serverIDPage = ({ serverID }) => {
   );
 };
 
-export default serverIDPage;
+export default withAuth(serverIDPage);
 
 export async function getServerSideProps(ctx) {
   const { serverID } = ctx.params;

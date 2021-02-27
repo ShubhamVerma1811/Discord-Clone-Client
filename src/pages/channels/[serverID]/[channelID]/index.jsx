@@ -4,6 +4,7 @@ import ChannelSideBar from 'components/ChannelSideBar';
 import Main from 'components/Main/Main';
 import Messages from 'components/Messages/Messages';
 import Sidebar from 'components/Sidebar';
+import withAuth from 'hoc/withAuth';
 import Layout from 'layouts';
 
 const channelIDPage = ({ serverID, channelID }) => {
@@ -29,7 +30,7 @@ const channelIDPage = ({ serverID, channelID }) => {
   );
 };
 
-export default channelIDPage;
+export default withAuth(channelIDPage);
 
 export async function getServerSideProps(ctx) {
   const { serverID, channelID } = ctx.params;
