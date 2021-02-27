@@ -1,4 +1,5 @@
 import Sidebar from 'components/Sidebar';
+import withAuth from 'hoc/withAuth';
 import Layout from 'layouts';
 import { useState } from 'react';
 
@@ -20,4 +21,4 @@ const Me = () => {
   );
 };
 
-export default Me;
+export default withAuth(Me);
