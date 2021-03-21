@@ -18,8 +18,9 @@ const AuthForm = ({ type }) => {
           onSubmit={async (e) => {
             e.preventDefault();
             const res = await handleSignIn(email, password);
+            const { user, accessToken } = res;
             localStorage.setItem('accessToken', res.accessToken);
-            dispatch(setUser(res.user));
+            dispatch(setUser({ ...user, accessToken }));
             if (res.message.toLowerCase() === 'success') {
               Router.replace('/channels/@me');
             }
