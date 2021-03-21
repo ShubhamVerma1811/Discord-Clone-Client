@@ -1,7 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
+
+@font-face {
+  font-family: Karla;
+  src: local('Karla');
+  url: ('/fonts/Karla/Karla-Regular.tff');
+}
 
 * {
   font-family: 'Karla';
