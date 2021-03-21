@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleSignOut } from 'services/authentication';
+import { handleSignOut } from 'services/handleAuthentication';
 import { removeUser } from 'store/userSlice';
 
 export const UserDropDown = () => {

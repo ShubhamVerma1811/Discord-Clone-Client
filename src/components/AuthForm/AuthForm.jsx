@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { handleSignIn, handleSignUp } from 'services/authentication';
+import { handleSignIn, handleSignUp } from 'services/handleAuthentication';
 import { setUser } from 'store/userSlice';
 
 const AuthForm = ({ type }) => {
