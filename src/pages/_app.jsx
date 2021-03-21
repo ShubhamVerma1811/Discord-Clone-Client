@@ -1,5 +1,4 @@
-import { PusherProvider } from '@harelpls/use-pusher';
-import pusherConfig from 'configs/pusher';
+import Pusher from 'components/Pusher/Pusher';
 import dynamic from 'next/dynamic';
 import 'nprogress/nprogress.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -31,11 +30,11 @@ function MyApp({ Component, pageProps }) {
         <PersistGate
           loading={<div>Hydrating State...</div>}
           persistor={persistor}>
-          <PusherProvider {...pusherConfig}>
-            <QueryClientProvider client={queryClient}>
+          <QueryClientProvider client={queryClient}>
+            <Pusher>
               <Component {...pageProps} />
-            </QueryClientProvider>
-          </PusherProvider>
+            </Pusher>
+          </QueryClientProvider>
         </PersistGate>
       </Provider>
     </>
