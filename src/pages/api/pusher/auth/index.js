@@ -10,11 +10,13 @@ const pusher = new Pusher({
 
 export default async function pusherAuth(req, res) {
   if (req.method === 'POST') {
-    const { channel_name, socket_id, user_id } = req.body;
+    const { channel_name, socket_id, user_id, user_info } = req.body;
     const { userID } = jwt.verify(user_id, process.env.ACCESS_TOKEN);
     const presenceData = {
       user_id: userID,
+      user_info: JSON.parse(user_info),
     };
+
     const auth = pusher.authenticate(socket_id, channel_name, presenceData);
     res.status(200).send(auth);
   }
