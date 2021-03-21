@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "prettier --write src/**/*"
+    "format": "prettier --write src/**/*",
+    "lint": "eslint src/**/*",
+    "lint-fix": "eslint --fix src/**/*"
   },
   "dependencies": {
     "@harelpls/use-pusher": "^7.1.0",
@@ -32,6 +34,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.1.0",
+    "eslint": "^7.22.0",
+    "eslint-plugin-react": "^7.22.0",
     "postcss": "^8.2.2",
     "tailwindcss": "^2.0.2"
   }
