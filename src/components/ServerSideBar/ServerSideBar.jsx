@@ -108,7 +108,7 @@ export const ServerSideBar = () => {
   };
 
   return (
-    <div className="bg-gray-800 w-20 h-screen overflow-hidden overflow-y-scroll">
+    <div className="bg-gray-800 w-20 h-screen overflow-hidden overflow-y-auto scrollbar-thin">
       <ReactQueryDevtools initialIsOpen={false} />
       <div>
         <nav className="px-2">

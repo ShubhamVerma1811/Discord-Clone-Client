@@ -37,6 +37,7 @@
     "eslint": "^7.22.0",
     "eslint-plugin-react": "^7.22.0",
     "postcss": "^8.2.2",
+    "tailwind-scrollbar": "^1.2.4",
     "tailwindcss": "^2.0.2"
   }
 }

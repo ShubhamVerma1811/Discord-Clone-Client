@@ -49,12 +49,12 @@ const Messages = ({ channelID, presenceChannel }) => {
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <h1>Loading...</h1>
-      ) : (
-        <div>
-          {msgs.map((message) => (
+    <div className="flex flex-col">
+      <div>
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          msgs.map((message) => (
             <div key={message.message_uid}>
               <div className="flex">
                 <div className="w-12 h-12 overflow-hidden rounded-full">
@@ -76,20 +76,24 @@ const Messages = ({ channelID, presenceChannel }) => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-      )}
+          ))
+        )}
+      </div>
 
-      <form onSubmit={handleSendMessage}>
-        <input
-          type="text"
-          value={msg}
-          placeholder="Send Message"
-          required
-          onChange={(e) => setMsg(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <div
+        className="fixed bottom-0 overflow-hidden bg-gray-700 px-2 py-2"
+        style={{ width: 'inherit' }}>
+        <form onSubmit={handleSendMessage}>
+          <input
+            className="py-2 text-white w-full bg-gray-700 border-transparent border-2 focus-within:border-blue-500"
+            type="text"
+            value={msg}
+            placeholder="Send Message"
+            required
+            onChange={(e) => setMsg(e.target.value)}
+          />
+        </form>
+      </div>
     </div>
   );
 };

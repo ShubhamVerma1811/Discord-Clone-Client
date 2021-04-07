@@ -7,13 +7,18 @@ import PeopleSideBar from 'components/PeopleSideBar/PeopleSideBar';
 import Sidebar from 'components/Sidebar';
 import withAuth from 'hoc/withAuth';
 import Layout from 'layouts';
+import Head from 'next/head';
 
 const channelIDPage = ({ serverID, channelID }) => {
   const channelName = `presence-channel-${channelID}`;
-  const { channel, members, me, myID, count } = usePresenceChannel(channelName);
+  const { channel, members, myID } = usePresenceChannel(channelName);
 
   return (
     <div>
+      <Head>
+        <title>Channel | Disscord</title>
+      </Head>
+
       <Layout>
         <Sidebar>
           <Sidebar.ChannelSideBar>
@@ -22,17 +27,17 @@ const channelIDPage = ({ serverID, channelID }) => {
             </ChannelSideBar>
           </Sidebar.ChannelSideBar>
         </Sidebar>
-        <div className="bg-gray-600 w-full">
+        <div className="bg-gray-600 w-full h-screen overflow-hidden overflow-y-auto scrollbar-thin relative">
           <Main>
-            <h1>MAIN CONTENT</h1>
-            <h1>Messages for channelID : {channelID}</h1>
             <Messages channelID={channelID} presenceChannel={channel} />
           </Main>
         </div>
         <PeopleSideBar
           members={members}
+          myID={myID}
           serverID={serverID}
-          channelID={channelID}></PeopleSideBar>
+          channelID={channelID}
+        />
       </Layout>
     </div>
   );

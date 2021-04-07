@@ -20,10 +20,16 @@ const getServerChannels = async (serverID) => {
   return await res.json();
 };
 
+const getServerMembers = async (serverID) => {
+  const res = await fetch(`/api/servers/${serverID}/members`);
+  return await res.json();
+};
+
 export {
   createServer,
   editServer,
   deleteServer,
   getServerInfo,
   getServerChannels,
+  getServerMembers,
 };
